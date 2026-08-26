@@ -1,0 +1,122 @@
+Metadata-Version: 2.4
+Name: studyllm
+Version: 0.1.0
+Summary: A private, local AI that learns from the files in your data/ folder
+Author-email: StudyLLM Contributors <contributors@studyllm.dev>
+License: MIT
+Project-URL: Homepage, https://github.com/studyllm/studyllm
+Project-URL: Documentation, https://github.com/studyllm/studyllm#readme
+Project-URL: Repository, https://github.com/studyllm/studyllm
+Project-URL: Issues, https://github.com/studyllm/studyllm/issues
+Keywords: AI,RAG,local LLM,offline,knowledge base
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+
+# StudyLLM
+
+A private, local AI that learns from the files in your `data/` folder.
+
+## Overview
+
+StudyLLM is an open-source, self-hosted/offline local AI knowledge engine that automatically indexes documents in your `data/` folder and allows you to ask questions about them using Retrieval-Augmented Generation (RAG).
+
+## Core Philosophy
+
+The user should only need to understand:
+```
+models/ = AI model
+data/   = AI knowledge
+```
+
+Everything else is an implementation detail.
+
+## Features
+
+- 🔒 **Private & Local**: All processing happens on your machine
+- 📁 **Automatic Indexing**: New, modified, and deleted files are handled automatically
+- 🖥️ **Offline Operation**: No internet required after initial setup
+- 🎯 **Hardware Aware**: Automatically detects your system capabilities and recommends appropriate models
+- 📚 **Multiple Formats**: Supports PDF, DOCX, TXT, Markdown, PPTX, XLSX, CSV, and more
+- 📝 **Source Citations**: Answers include references to the original documents
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/studyllm.git
+cd studyyllm
+
+# Install dependencies
+pip install -e .
+
+# Install GPU support (optional)
+# pip install -e .[gpu]
+```
+
+## Quick Start
+
+1. Run StudyLLM for the first time:
+   ```bash
+   study-llm
+   ```
+
+2. Follow the prompts to:
+   - Let StudyLLM detect your hardware
+   - Download the recommended GGUF model
+   - Place it in the `models/` directory
+
+3. Add your documents to the `data/` folder:
+   ```bash
+   cp your-documents/* data/
+   ```
+
+4. Ask questions:
+   ```bash
+   study-llm ask "What is the main topic of my documents?"
+   ```
+
+   Or start an interactive chat:
+   ```bash
+   study-llm chat
+   ```
+
+## Supported Document Types
+
+- PDF
+- DOCX
+- TXT
+- Markdown
+- PPTX
+- XLSX
+- CSV
+- Common image formats (with OCR)
+
+## Configuration
+
+StudyLLM aims for zero-configuration usage. Advanced settings can be found in `config/settings.json`.
+
+## Development
+
+See [HANDOVER.md](HANDOVER.md) for detailed development instructions and architecture.
+
+## License
+
+MIT
+
+## Privacy
+
+StudyLLM is designed for private documents:
+- Documents remain on your machine
+- Embeddings remain on your machine
+- Vector database remains on your machine
+- LLM inference remains on your machine
+- No document upload
+- No cloud inference
+- No telemetry by default

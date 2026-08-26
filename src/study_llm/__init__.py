@@ -1,0 +1,1 @@
+"""StudyLLM - A private, local AI that learns from the files in your data/ folder."""
