@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "studyllm"
+version = "0.1.0"
+description = "A private, local AI that learns from the files in your data/ folder"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "StudyLLM Contributors", email = "contributors@studyllm.dev"}
+]
+keywords = ["AI", "RAG", "local LLM", "offline", "knowledge base"]
+dependencies = [
+    "typer>=0.9",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+# Full local AI stack: inference, embeddings, vector DB, parsing, live updates
+ai = [
+    "llama-cpp-python>=0.2.0",
+    "sentence-transformers>=3.0",
+    "qdrant-client>=1.9",
+    "docling>=2.0",
+    "watchdog>=4.0",
+]
+dev = [
+    "pytest>=8.0",
+    "black>=24.0",
+    "isort>=5.13",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.urls]
+Homepage = "https://github.com/studyllm/studyllm"
+Documentation = "https://github.com/studyllm/studyllm#readme"
+Repository = "https://github.com/studyllm/studyllm"
+Issues = "https://github.com/studyllm/studyllm/issues"
+
+[project.scripts]
+study-llm = "study_llm.cli.main:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["study_llm*"]
+
+[tool.setuptools.package-data]
+"study_llm" = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+known-first-party = ["study-llm"]
+known-third-party = ["typer", "rich", "watchdog", "llama-cpp-python", "qdrant-client", "sentence-transformers", "docling"]
